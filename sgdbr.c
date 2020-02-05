@@ -1,18 +1,20 @@
 /// Systeme de base de donnee relationnel d'une librairie
 
+//les lib
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
+#include <string.h> 
 #include <time.h>
-#define ROUGE "\033[00;31m"
-#define SOULIGNE "\033[04m"
-#define NORMAL "\033[00m"
 
+//les couleurs (seulement sous linux)
+//#define ROUGE "\033[00;31m" #define SOULIGNE "\033[04m" #define NORMAL "\033[00m"
+
+//les structures
 
 struct livre
 {
 	int ID_livre;
-	char titre[20];
+	char *titre;
 	int auteur;
 	int maison_edition;
 };
@@ -31,9 +33,12 @@ struct maison_edit
 };
 
 
+typedef struct livre s_livre;
+typedef struct auteur s_auteur;
+typedef struct maison_edition s_maison_edition;
 
 
-
+//les fonctions
 
 int menu();
 void add();
@@ -45,17 +50,29 @@ int home();
 
 
 int main(){
-            printf(ROUGE"\n\t\t     _________________________________");
-            printf(ROUGE"\n\t\t    /                                 /");
-            printf(ROUGE"\n\t\t   /          Gestionnaire           / ");
-            printf(ROUGE"\n\t\t  /              d\'une              /  ");
-            printf(ROUGE"\n\t\t /            bibliotheque         /   ");
-            printf(ROUGE"\n\t\t/_______________________________ _/\n\n\n\n\n"NORMAL);
-            //printf(ROUGE SOULIGNE "Un joli texte rouge souligné\n" NORMAL);
+
+            //printf(ROUGE);
+			printf("\n\t\t     _________________________________");
+            printf("\n\t\t    /                                 /");
+            printf("\n\t\t   /          Gestionnaire           / ");
+            printf("\n\t\t  /              d\'une              /  ");
+            printf("\n\t\t /            bibliotheque         /   ");
+            printf("\n\t\t/_______________________________ _/\n\n\n\n\n");
+			//printf(NORMAL);
+
+s_livre livre1;
+livre1.auteur = 3;
+livre1.ID_livre = 1;
+livre1.maison_edition = 3;
+livre1.titre = strdup("Harry Potter");
+printf("nom du livre1: %s\n", livre1.titre);
+
 int menub = menu();
 return 1;
 
 }
+
+//les menu
 
 int menu(){
 
@@ -186,6 +203,4 @@ void rendre(){
     printf("rendre\n");
     home();
 }
-
-// ____________________ SUITE _____________________ 
 
